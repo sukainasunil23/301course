@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchReceivedCards, redeemCard } from './../state/actions/index';
-import GiftsReceived from '../components/giftsReceived';
+import { fetchReceivedCards, redeemCard } from '../state/actions/index';
+import GiftsReceived from '../components/GiftsReceived';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Redirect } from 'react-router-dom';
 
-class GiftsReceivedContainer extends Component {
+export class GiftsReceivedContainer extends Component {
 
   componentDidMount() {
       if(this.props.user)

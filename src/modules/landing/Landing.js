@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Styles from '../../assets/css/Landing.module.css';
 import Button from '@material-ui/core/Button';
 import YoYoGiftImg from '../../assets/images/YoyoGift.png';
 import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 
-class Landing extends Component {
-  render() {
+const Landing = () => {
     return (
       <div>
         <div id="promo-ribbon" className={Styles.offerMessage}>
@@ -22,7 +21,7 @@ class Landing extends Component {
                 <p>YoYo makes it easy for you to give the perfect gift card</p>
                 <p>and conveniently manage them from any device!!</p>
               </div>
-              <Link to="/giftCards" onClick={this.handleClick} className={Styles.cardsBtn}>
+              <Link to="/giftCards" className={Styles.cardsBtn}>
                 <Button variant="contained">
                 Explore Cards
                 </Button>
@@ -61,6 +60,5 @@ class Landing extends Component {
       </div>
     )
   }
-}
 
 export default Landing;

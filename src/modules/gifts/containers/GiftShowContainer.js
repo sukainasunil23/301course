@@ -10,7 +10,7 @@ import { fetchCard, updateCardCount } from "../state/actions";
 import GiftShow from "../components/GiftShow";
 import Snackbar from "../../common/components/Snackbar";
 import * as emailjs from 'emailjs-com';
-class GiftShowContainer extends Component {
+export class GiftShowContainer extends Component {
   state = {
     showErrorSnackBar: false,
     showSuccessSnackBar: false,
@@ -23,8 +23,7 @@ class GiftShowContainer extends Component {
     const id = this.props.match.params.id;
     this.props.fetchCard(id);
     if (this.props.login) {
-      this.props
-        .userDetails(this.props.login.id)
+      this.props.userDetails(this.props.login.id)
         .then(() => {
           this.setState({
             balance_points: this.props.user.balance_points,
@@ -95,7 +94,7 @@ class GiftShowContainer extends Component {
       }, 6000);
     }
   };
-  
+
   sendMail = (email, name) => {
     let payload = {
         to_email: email,
@@ -143,7 +142,7 @@ class GiftShowContainer extends Component {
         ) : null}
         <GiftShow
           data={this.props.gift}
-          getEmail={email => {
+          getEmail={(email)=>{
             this.setState({
               email: email
             });
@@ -155,7 +154,7 @@ class GiftShowContainer extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+export const mapStateToProps = (state, ownProps) => {
   return {
     gift: state.gifts.giftCard,
     user: state.users.UserDetails,

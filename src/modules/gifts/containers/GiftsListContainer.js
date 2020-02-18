@@ -25,7 +25,7 @@ import {
 } from "../../common/components/CompareForSort";
 
 const sortCategoryArray = ["Points", "Count", "Validity"];
-class GiftsListContainer extends React.Component {
+export class GiftsListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -33,7 +33,7 @@ const GiftsListContainer = Loadable({
 });
 
 const ProfileContainers = Loadable({
-  loader: () => import("./user/containers/profileContainers"),
+  loader: () => import("./user/containers/ProfileContainer"),
   loading: Loading
 });
 
@@ -43,12 +43,12 @@ const GiftShowContainer = Loadable({
 });
 
 const GiftsSendContainer = Loadable({
-  loader: () => import("./user/containers/giftsSendContainer"),
+  loader: () => import("./user/containers/GiftsSendContainer"),
   loading: Loading
 });
 
 const GiftsReceivedContainer = Loadable({
-  loader: () => import("./user/containers/giftsReceivedContainer"),
+  loader: () => import("./user/containers/GiftsReceivedContainer"),
   loading: Loading
 });
 
@@ -58,7 +58,7 @@ const GiftsReceivedContainer = Loadable({
 // });
 
 const AddUpdateForm = Loadable({
-  loader: () => import("./admin/components/addUpdateForm"),
+  loader: () => import("./admin/components/AddUpdateForm"),
   loading: Loading
 });
 
@@ -67,6 +67,10 @@ const ErrorPage = Loadable({
   loading: Loading
 });
 
+const Login = Loadable({
+  loader: () => import("./header/components/Login"),
+  loading: Loading
+})
 class App extends Component {
     render() {
         return (
@@ -75,6 +79,7 @@ class App extends Component {
           <Router history={history}>
             <Switch>
               {/* <Route path="/giftCards/new" exact component={GiftCreateContainer} /> */}
+              <Route exact path="/login" component={Login} />
               <Route exact path="/giftCards/:id" component={GiftShowContainer} />
               <Route exact path="/giftCards" component={GiftsListContainer} />
               <Route exact path="/Profile" component={ProfileContainers} />

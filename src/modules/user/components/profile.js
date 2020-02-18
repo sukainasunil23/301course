@@ -1,18 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 import Grid from '@material-ui/core/Grid';
 import Styles from '../../../assets/css/Profile.module.css';
 import Paper from '@material-ui/core/Paper';
 
-class Profile extends Component {
-  render() {
+const Profile = (props) => {
     let {
       email,
-      firstName,
-      lastName,
+      first_name,
+      last_name,
       socialProfileLink,
-      picture,
+      image,
       balance_points
-    } = this.props.detailsObject;
+    } = props.detailsObject;
     return (
       // <React.Fragment>
       //   <br />
@@ -104,7 +103,7 @@ class Profile extends Component {
           <img
             className={Styles.profileImg}
             alt="profile"
-            src={picture}
+            src={image}
           />
         </div>
         <div className={Styles.profileContent}>
@@ -118,7 +117,7 @@ class Profile extends Component {
               <label className={Styles.label}>Balance Points</label>
             </Grid>
             <Grid item xs={8}>
-              <Paper className={Styles.profileValues}>{firstName} {lastName}</Paper>
+              <Paper className={Styles.profileValues}>{first_name} {last_name}</Paper>
               <Paper className={Styles.profileValues}>{email}</Paper>
               {socialProfileLink ? 
               <Paper className={Styles.profileValues}>{socialProfileLink}</Paper>
@@ -130,6 +129,5 @@ class Profile extends Component {
       </>
     );
   }
-}
 
 export default Profile;

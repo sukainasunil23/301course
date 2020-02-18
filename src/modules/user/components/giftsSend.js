@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {DateFormatter} from '../../common/components/DateFormatter';
 
-const styles = theme => ({
+export const styles = theme => ({
   root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
@@ -21,7 +21,7 @@ const styles = theme => ({
 });
 
 
-function GiftsSend(props) {
+export function GiftsSend(props) {
   const { classes, data } = props;
   
   return (
@@ -43,7 +43,7 @@ function GiftsSend(props) {
               <TableCell>{row.cardName}</TableCell>
               <TableCell >{row.cardPoints}</TableCell>
               <TableCell >{row.receiverEmail}</TableCell>
-              <TableCell>{DateFormatter(row.cardIssueDate)}</TableCell>
+              <TableCell>{(row.cardIssueDate)}</TableCell>
               <TableCell>{DateFormatter(row.cardExpiryDate)}</TableCell>
             </TableRow>
           ))}

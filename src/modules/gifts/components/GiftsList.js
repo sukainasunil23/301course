@@ -3,19 +3,26 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import GiftCard from "../../common/components/GiftCard";
-import { List } from "react-virtualized";
+import { List, AutoSizer } from "react-virtualized";
 import { Button} from '@material-ui/core';
 const styles = theme => ({
   root: {
-    width: "90%",
-    margin: '2%',
-    padding: '1%'
+    margin: '1%',
+    padding: '1%',
+    float: "left",
+    width: '20%',
+    [theme.breakpoints.down('xs')]: {
+      width: '94%',
+      margin: '4%'
+    }
   },
   table: {
     minWidth: 100
   },
   tableWrapper: {
     overflow: "hidden"
+  },
+  item: {
   }
 });
 
@@ -53,16 +60,56 @@ class GiftsList extends React.Component {
    
   }
   render() {
-    let {  giftCardsFiltered } = this.props;
+    let {  giftCardsFiltered, userDetails, classes } = this.props;
   
     return (
-      <div alignItems= "center">
-        <List
-        width={1000}
-        height={600}
-        rowHeight={315}
-        rowRenderer={this.rowRenderer}
-        rowCount={giftCardsFiltered.length} />
+      // <div alignItems= "center">
+      //   <List
+      //   width={1000}
+      //   height={600}
+      //   rowHeight={315}
+      //   rowRenderer={this.rowRenderer}
+      //   rowCount={giftCardsFiltered.length} />
+      // </div>
+      <div style={{ marginTop: "10px", height: "80vh" }}>
+        <AutoSizer>
+          {({ height, width }) => {
+            const itemsPerRow =  Math.floor(width / 340) || 1; 
+            const rowCount = Math.ceil(giftCardsFiltered.length / itemsPerRow); 
+            return (
+              <div>
+                <List
+                  width={width}
+                  height={height}
+                  rowCount={rowCount}
+                  rowHeight={340}
+                  rowRenderer={({ index, key, style }) => {
+                    const items = [];
+                    const fromIndex = index * itemsPerRow;
+                    const toIndex = Math.min(
+                      fromIndex + itemsPerRow,
+                      giftCardsFiltered.length
+                    );
+
+                    for (let i = fromIndex; i < toIndex; i++) {
+                      items.push(
+                        <div className={classes.root} key={i}>
+                          <GiftCard giftCard={giftCardsFiltered[i]} userEmail={userDetails.email}/>
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <div className={classes.item} key={key} style={style}>
+                        {items}
+                      </div>
+                    );
+                  }}
+                />
+              </div>
+            );
+          }}
+        </AutoSizer>
       </div>
     );
   }

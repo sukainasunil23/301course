@@ -26,7 +26,7 @@ const styles = {
   }
 };
 
-class Header extends Component {
+export class Header extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -47,7 +47,7 @@ class Header extends Component {
         <AppBar position="static">
           <Toolbar className={classes.toolBar}>
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              <Button onClick={this.goTolanding}>
+              <Button id="YOYOGift" onClick={this.goTolanding}>
                 <span style={{ fontSize: "1.2em", color: "#ffffff" }}>
                   YOYOGift
                 </span>
@@ -55,24 +55,23 @@ class Header extends Component {
             </Typography>
             {/* {this.props.isLoggedIn ? <Button color="inherit" onClick={this.addUpdateForm}>ADD UPDATE FORM</Button> : null} */}
             {this.props.isLoggedIn ? (
-              <Button className={Styles.headerButton} color="inherit" onClick={this.giftsReceived}>
+              <Button id="receive" className={Styles.headerButton} color="inherit" onClick={this.giftsReceived}>
                 GIFTS RECEIVED
               </Button>
             ) : null}
             {this.props.isLoggedIn ? (
-              <Button className={Styles.headerButton} color="inherit" onClick={this.giftsSend}>
+              <Button id="sent" className={Styles.headerButton} color="inherit" onClick={this.giftsSend}>
                 GIFTS SENT
               </Button>
             ) : null}
             {this.props.isLoggedIn ? (
-              <Button className={Styles.headerButton} color="inherit" onClick={this.myProfile}>
+              <Button id="profile" className={Styles.headerButton} color="inherit" onClick={this.myProfile}>
                 MY PROFILE
               </Button>
             ) : null}
-            <Button className={Styles.headerButton}
+            <Button id="logging" className={Styles.headerButton}
               color="inherit"
-              onClick={() => {
-              }}
+              onClick={this.props.isLoggedIn? this.logOut: this.logIn}
             >
               {this.props.isLoggedIn ? "LOGOUT" : "LOGIN"}
             </Button>
@@ -104,20 +103,23 @@ class Header extends Component {
     window.sessionStorage.removeItem("usertype");
   };
 
+  logIn = () => {
+    history.push("/login")
+  };
 }
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => {
+export const mapStateToProps = state => {
   return {
     isLoggedIn: state.login.loginStatus,
     userDetails: state.login.detailsObject
   };
 };
 
-const mapDispatchToProps = dispatch => {
+export const mapDispatchToProps = dispatch => {
   return bindActionCreators({ login, logout, createUser }, dispatch);
 };
 

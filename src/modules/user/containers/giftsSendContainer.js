@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchSentCards } from './../state/actions/index';
-import GiftsSent from '../components/giftsSend.js';
+import { fetchSentCards } from '../state/actions/index';
+import GiftsSend from '../components/GiftsSend.js';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Redirect } from 'react-router-dom';
 
-class GiftsSendContainer extends Component {
+export class GiftsSendContainer extends Component {
 
   componentDidMount() {
     if(this.props.user)
@@ -34,7 +34,7 @@ class GiftsSendContainer extends Component {
         } else {
         return (
           <div>
-            <GiftsSent data={this.props.sentCards} />
+            <GiftsSend data={this.props.sentCards} />
           </div>
         )
       }    

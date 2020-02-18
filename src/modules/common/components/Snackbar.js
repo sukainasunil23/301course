@@ -1,12 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import Snackbar from "@material-ui/core/Snackbar";
 import SnackbarContent from "@material-ui/core/SnackbarContent";
 
-class MySnackBar extends Component {
-  render() {
-    const { message , color} = this.props
+const MySnackBar = (props) => {
+    const { message , color} = props
     return (
-      <div>
+      <React.Fragment>
         <Snackbar
           anchorOrigin={{
             vertical: "bottom",
@@ -19,9 +18,8 @@ class MySnackBar extends Component {
             style={{backgroundColor: color}}
           />
         </Snackbar>
-      </div>
+      </React.Fragment>
     );
   }
-}
 
 export default MySnackBar;

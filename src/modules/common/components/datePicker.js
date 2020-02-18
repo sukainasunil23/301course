@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const styles = theme => ({
+export const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -15,7 +15,7 @@ const styles = theme => ({
   },
 });
 
-function DatePickers(props) {
+export function DatePickers(props) {
   const { classes } = props;
 
   return (

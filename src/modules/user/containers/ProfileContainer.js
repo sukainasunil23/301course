@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import Profile from '../components/profile'
+import Profile from '../components/Profile'
 import { Redirect } from 'react-router-dom';
-import {userDetails} from '../../../modules/user/state/actions';
+import {userDetails} from '../state/actions';
 
-class ProfileContainer extends Component {
+export class ProfileContainer extends Component {
     componentDidMount() {
         if(this.props.detailsObject) 
             this.props.userDetails (this.props.detailsObject.id)

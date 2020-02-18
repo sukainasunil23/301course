@@ -13,7 +13,7 @@ import EditIcon from "@material-ui/icons/BorderColor";
 import { Link } from "react-router-dom";
 import { adminEmail } from "../../../config/constants";
 
-const styles = theme => ({
+export const styles = theme => ({
   card: {
     maxWidth: 400,
     minWidth: 100,
@@ -47,7 +47,7 @@ const styles = theme => ({
   }
 });
 
-class GiftCard extends React.Component {
+export class GiftCard extends React.Component {
   state = { expanded: false };
 
   handleExpandClick = () => {

@@ -10,7 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import { Button } from '@material-ui/core';
 import {DateFormatter} from '../../common/components/DateFormatter';
 
-const styles = theme => ({
+export const styles = theme => ({
   root: {
     minHeight: '100vh',
     width: '100%',
@@ -22,8 +22,11 @@ const styles = theme => ({
   },
 });
 
-function GiftsReceived(props) {
+export function GiftsReceived(props) {
   const { classes, data } = props;
+  const redeemCard = (row) => {
+    props.redeemCard(row)
+  }
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
@@ -49,7 +52,7 @@ function GiftsReceived(props) {
               <TableCell>{row.cardShortDesc}</TableCell>
               <TableCell>{DateFormatter(row.cardIssueDate)}</TableCell>
               <TableCell>{DateFormatter(row.cardExpiryDate)}</TableCell>
-              <TableCell>{row.isRedeemed ? 'Redeemed' : <Button variant="contained" color="primary" onClick={()=>props.redeemCard(row)}>Redeem</Button>}</TableCell>
+              <TableCell>{row.isRedeemed ? 'Redeemed' : <Button variant="contained" color="primary" onClick={redeemCard(row)}>Redeem</Button>}</TableCell>
             </TableRow>
           ))}
         </TableBody>

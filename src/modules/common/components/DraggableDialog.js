@@ -39,7 +39,7 @@ class DraggableDialog extends React.Component {
   render(){
   const { open } = this.state
   return (
-    <div>
+    <React.Fragment>
       <Button variant="contained" color="primary" onClick={this.handleOpenClose}>
         send this gift card
       </Button>
@@ -111,7 +111,7 @@ class DraggableDialog extends React.Component {
     </Formik>
         </DialogContent>
       </Dialog>
-    </div>
+    </React.Fragment>
   )}
 }
 
