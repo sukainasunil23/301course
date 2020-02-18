@@ -222,9 +222,9 @@ export class GiftsListContainer extends React.Component {
           </Button>
             ) : null}
           </Grid>
-          {/* <Grid item xs={12} sm={3}>
-              search bar:<input name="SearchBar" />
-          </Grid> */}
+          <Grid item xs={12} sm={3}>
+          <label style={{ marginTop: "2%" }}>Search:</label><input name="SearchBar" />
+          </Grid>
         </Grid>
 
         <div style={{ textAlign: 'center' }}>
