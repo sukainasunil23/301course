@@ -1,6 +1,6 @@
-import usersReducer from "./usersReducer";
-import cardList from "../../../../fixtures/cards";
-import userDetails from "../../../../fixtures/userDetails";
+import usersReducer from './usersReducer';
+import cardList from '../../../../fixtures/cards';
+import userDetails from '../../../../fixtures/userDetails';
 
 const cards = { cardList };
 const card = cards[0];
@@ -8,8 +8,8 @@ const users = { userDetails };
 const user = users[0];
 
 // set up initial state
-it("should sets up initial state", () => {
-  const state = usersReducer(undefined, { type: "@@INIT" });
+it('should sets up initial state', () => {
+  const state = usersReducer(undefined, { type: '@@INIT' });
 
   expect(state).toEqual({
     UserDetails: [],
@@ -18,9 +18,9 @@ it("should sets up initial state", () => {
 });
 
 //received cards
-it("RECEIVED CARDS", () => {
+it('RECEIVED CARDS', () => {
   const action = {
-    type: "RECEIVED_CARDS",
+    type: 'RECEIVED_CARDS',
     payload: cards
   };
 
@@ -32,9 +32,9 @@ it("RECEIVED CARDS", () => {
   });
 });
 
-it("SENT_CARDS", () => {
+it('SENT_CARDS', () => {
   const action = {
-    type: "SENT_CARDS",
+    type: 'SENT_CARDS',
     payload: cards
   };
 
@@ -46,9 +46,9 @@ it("SENT_CARDS", () => {
   });
 });
 
-it("USER_DETAILS", () => {
+it('USER_DETAILS', () => {
   const action = {
-    type: "USER_DETAILS",
+    type: 'USER_DETAILS',
     payload: user
   };
 
@@ -61,9 +61,9 @@ it("USER_DETAILS", () => {
 });
 
 /*Reedem card test case failed */
-// it("REDEEM_CARD", () => {
+// it('REDEEM_CARD', () => {
 //   const action = {
-//     type: "REDEEM_CARD",
+//     type: 'REDEEM_CARD',
 //     payload: cards
 //   };
 
@@ -75,9 +75,9 @@ it("USER_DETAILS", () => {
 //   });
 // });
 
-it("UPDATE_BALANCE", () => {
+it('UPDATE_BALANCE', () => {
   const action = {
-    type: "UPDATE_BALANCE",
+    type: 'UPDATE_BALANCE',
     payload: user
   };
 
@@ -89,9 +89,9 @@ it("UPDATE_BALANCE", () => {
   });
 });
 
-it("UPDATE_TRANSACT", () => {
+it('UPDATE_TRANSACT', () => {
   const action = {
-    type: "UPDATE_TRANSACT",
+    type: 'UPDATE_TRANSACT',
     payload: user
   };
 

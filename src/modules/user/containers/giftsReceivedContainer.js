@@ -11,8 +11,8 @@ export class GiftsReceivedContainer extends Component {
       if(this.props.user)
         this.props.fetchReceivedCards(this.props.user.email);
   }
-  componentDidCatch(error, info) {
-    console.log(error)
+  componentDidCatch(error) {
+    console.log(error);
   }
   handleRedeemCard = (row) => {
     const rowId = row.id;
@@ -27,14 +27,14 @@ export class GiftsReceivedContainer extends Component {
       cardIssueDate: row.cardIssueDate,
       cardExpiryDate: row.cardExpiryDate,
       isRedeemed: true
-    }
+    };
     this.props.redeemCard(rowId, addObj);
   }
 
   render() {
     if (this.props.isLoggedIn) {
       if(!(this.props.receivedCards) || (this.props.receivedCards.length < 0)) {
-        return <CircularProgress style={{marginLeft: '50%', marginTop: '10%'}} />            
+        return <CircularProgress style={{marginLeft: '50%', marginTop: '10%'}} />;            
       } else if (this.props.receivedCards.length === 0) {
         return <h2 style={{
           height: '40px',
@@ -47,26 +47,26 @@ export class GiftsReceivedContainer extends Component {
           fontWeight: '500'
         }}>
         NO DATA
-        </h2>
+        </h2>;
         } else{
         return (
         <div>
           <GiftsReceived data={this.props.receivedCards} redeemCard={this.handleRedeemCard} />
         </div>
-      )
+      );
     } 
   } else {
-      return <Redirect to="/" />
+      return <Redirect to='/' />;
   }   
   }
 }
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.login.loginStatus,
         receivedCards: state.users.cards,
         user:state.login.detailsObject
-    }
-}
+    };
+};
 
 export default connect(mapStateToProps, {fetchReceivedCards, redeemCard})(GiftsReceivedContainer);

@@ -1,5 +1,3 @@
-import React from "react";
-import { shallow } from "../../../enzyme";
 import {comparePointsAsc ,comparePointsDesc ,compareCountAsc,compareCountDesc,compareValidityAsc,compareValidityDesc} from "./CompareForSort"
 
 describe("compareforsort is being checked", () => {

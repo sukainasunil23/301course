@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Styles from '../../../assets/css/Profile.module.css';
 import Paper from '@material-ui/core/Paper';
@@ -16,79 +16,79 @@ const Profile = (props) => {
       // <React.Fragment>
       //   <br />
       //   <br />
-      //   <div className="row">
-      //     <div className="col-md-12">
-      //       {" "}
-      //       <label className="">
-      //         <h1>Your Profile</h1>{" "}
+      //   <div className='row'>
+      //     <div className='col-md-12'>
+      //       {' '}
+      //       <label className=''>
+      //         <h1>Your Profile</h1>{' '}
       //       </label>
       //     </div>
       //   </div>
       //   <hr />
-      //   <div className="row">
-      //     <div className="col-md-12">
-      //       {" "}
-      //       <label className="">
-      //         {" "}
+      //   <div className='row'>
+      //     <div className='col-md-12'>
+      //       {' '}
+      //       <label className=''>
+      //         {' '}
       //         <img
-      //           className="img-fluid"
-      //           alt="profile"
+      //           className='img-fluid'
+      //           alt='profile'
       //           src={picture}
-      //           height="150"
-      //           width="150"
+      //           height='150'
+      //           width='150'
       //         />
       //       </label>
       //     </div>
       //   </div>
       //   <hr />
-      //   <div className="row">
-      //     <div className="col-md-4">
-      //       {" "}
-      //       <label className="">Name</label>
+      //   <div className='row'>
+      //     <div className='col-md-4'>
+      //       {' '}
+      //       <label className=''>Name</label>
       //     </div>
-      //     <div className="col-md-8">
-      //       {" "}
-      //       <label className="">
-      //         {" "}
+      //     <div className='col-md-8'>
+      //       {' '}
+      //       <label className=''>
+      //         {' '}
       //         {firstName} {lastName}
       //       </label>
       //     </div>
       //   </div>
       //   <hr />
-      //   <div className="row">
-      //     <div className="col-md-4">
-      //       {" "}
-      //       <label className="">Email </label>
+      //   <div className='row'>
+      //     <div className='col-md-4'>
+      //       {' '}
+      //       <label className=''>Email </label>
       //     </div>
-      //     <div className="col-md-8">
-      //       {" "}
-      //       <label className="">{email} </label>
-      //     </div>
-      //   </div>
-      //   <hr />
-      //   <div className="row">
-      //     <div className="col-md-4">
-      //       {" "}
-      //       <label className="">Gender </label>
-      //     </div>
-      //     <div className="col-md-8">
-      //       {" "}
-      //       <label className="">{gender} </label>
+      //     <div className='col-md-8'>
+      //       {' '}
+      //       <label className=''>{email} </label>
       //     </div>
       //   </div>
       //   <hr />
-      //   <div className="row">
-      //     <div className="col-md-4">
-      //       {" "}
-      //       <label className="">Social Link </label>
+      //   <div className='row'>
+      //     <div className='col-md-4'>
+      //       {' '}
+      //       <label className=''>Gender </label>
       //     </div>
-      //     <div className="col-md-8">
-      //       {" "}
-      //       <label className="">
-      //         {" "}
+      //     <div className='col-md-8'>
+      //       {' '}
+      //       <label className=''>{gender} </label>
+      //     </div>
+      //   </div>
+      //   <hr />
+      //   <div className='row'>
+      //     <div className='col-md-4'>
+      //       {' '}
+      //       <label className=''>Social Link </label>
+      //     </div>
+      //     <div className='col-md-8'>
+      //       {' '}
+      //       <label className=''>
+      //         {' '}
       //         <a
-      //           target="_blank"
-      //           rel="noopener noreferrer"
+      //           target='_blank'
+      //           rel='noopener noreferrer'
       //           href={socialProfileLink}
       //         >
       //           {socialProfileLink}
@@ -102,7 +102,7 @@ const Profile = (props) => {
         <div className={Styles.profileHeader}>
           <img
             className={Styles.profileImg}
-            alt="profile"
+            alt='profile'
             src={image}
           />
         </div>

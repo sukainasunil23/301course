@@ -1,9 +1,9 @@
-import React from "react";
-import { shallow } from "../enzyme";
-import { shallowToJson } from "enzyme-to-json";
-import App from "./App";
+import React from 'react';
+import { shallow } from '../enzyme';
+import { shallowToJson } from 'enzyme-to-json';
+import App from './App';
 
-it("should render App", () => {
+it('should render App', () => {
   let wrapper = shallow(<App />);
-  expect(wrapper).toBeTruthy();
+  expect(shallowToJson(wrapper)).toMatchSnapshot();
 });

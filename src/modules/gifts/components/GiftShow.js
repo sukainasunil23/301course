@@ -1,15 +1,15 @@
-import React from "react";
-import Styles from "../../../assets/css/GiftShow.module.css";
-import Grid from "@material-ui/core/Grid";
-import { DateFormatter } from "./../../common/components/DateFormatter";
-import StarRatingComponent from "react-star-rating-component";
-import SendGiftCardDialog from "../../common/components/DraggableDialog";
+import React from 'react';
+import Styles from '../../../assets/css/GiftShow.module.css';
+import Grid from '@material-ui/core/Grid';
+import { DateFormatter } from './../../common/components/DateFormatter';
+import StarRatingComponent from 'react-star-rating-component';
+import SendGiftCardDialog from '../../common/components/DraggableDialog';
 
 const GiftShow = props => {
   const { data } = props;
 
   return (
-    <div style={{ padding: "4%" }}>
+    <div style={{ padding: '4%' }}>
       <div className={Styles.detailsPage}>
         <Grid container spacing={0}>
           <Grid item xs={12} sm={5} className={Styles.cardContainer}>
@@ -18,7 +18,7 @@ const GiftShow = props => {
                 <Grid item xs={6} sm={6}>
                   <img
                     src={data.cardImage}
-                    alt="vendorImage"
+                    alt='vendorImage'
                     className={Styles.vendorImage}
                   />
                 </Grid>
@@ -41,13 +41,13 @@ const GiftShow = props => {
                     <p className={Styles.commentorName}> {comment.first_name} {comment.last_name}<span className={Styles.commentDate}>{DateFormatter(comment.commented_on)}</span></p>
                     <p className={Styles.comment}>{comment.comment}</p>
                     <StarRatingComponent
-                        name="rating"
+                        name='rating'
                         starCount={5}
                         value={comment.rating}
                         editing={false}
                       />
                   </div>
-                )
+                );
               })
             :  <div>Loading User Reviews..</div>}
             </div>

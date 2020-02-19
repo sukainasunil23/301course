@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { shallow } from '../../../enzyme';
 import GiftShow from './GiftShow'
 
@@ -8,7 +8,7 @@ describe('Show gift test', () => {
     beforeEach (() => {
         props = {
             data : {
-                cardComments : ["cardComments"]
+                cardComments : ['cardComments']
             }
         };
     })
@@ -18,7 +18,7 @@ describe('Show gift test', () => {
     })
     it('should show Loading user reviews if no cardcomments are loaded', ()=>{
         const props = {
-            data : "data"
+            data : 'data'
         };
         wrapper = shallow(<GiftShow {...props}/>);
         expect(wrapper).toBeTruthy();

@@ -1,19 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import GiftsList from "../components/GiftsList";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Button from "@material-ui/core/Button";
-import { fetchCards, fetchCard, fetchCardFilter } from "../state/actions";
-import history from "../../common/components/history";
-import Select from "@material-ui/core/Select";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import AscendingButton from "@material-ui/icons/SwapVert";
-import IconButton from "@material-ui/core/IconButton";
-import DescendingButton from "@material-ui/icons/SwapVerticalCircle";
-import Tooltip from "@material-ui/core/Tooltip";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import GiftsList from '../components/GiftsList';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Button from '@material-ui/core/Button';
+import { fetchCards, fetchCard, fetchCardFilter } from '../state/actions';
+import history from '../../common/components/history';
+import Select from '@material-ui/core/Select';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import AscendingButton from '@material-ui/icons/SwapVert';
+import IconButton from '@material-ui/core/IconButton';
+import DescendingButton from '@material-ui/icons/SwapVerticalCircle';
+import Tooltip from '@material-ui/core/Tooltip';
 import { adminEmail } from '../../../config/constants';
 import Grid from '@material-ui/core/Grid';
+import {debounce} from 'lodash';
 
 import {
   comparePointsAsc,
@@ -22,17 +23,18 @@ import {
   compareCountDesc,
   compareValidityAsc,
   compareValidityDesc
-} from "../../common/components/CompareForSort";
+} from '../../common/components/CompareForSort';
 
-const sortCategoryArray = ["Points", "Count", "Validity"];
+const sortCategoryArray = ['Points', 'Count', 'Validity'];
 export class GiftsListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       //sortOrder : true (ascending order) and false (descending order)
       sortOrder: true,
-      sortByValue: "None",
-      filterValue: 'All'
+      sortByValue: 'None',
+      filterValue: 'All',
+      search: ''
     };
   }
   componentDidMount() {
@@ -41,14 +43,6 @@ export class GiftsListContainer extends React.Component {
   componentDidCatch(error, info) {
     console.log(error);
   }
-  handleChangePage = (event, page) => {
-    this.setState({ page });
-  };
-
-  handleChangeRowsPerPage = event => {
-    this.setState({ page: 0, rowsPerPage: event.target.value });
-  };
-
   handleSortButtonClick = () => {
     const e = {
       target: {
@@ -63,7 +57,7 @@ export class GiftsListContainer extends React.Component {
   // }
 
   // handleUpdateClick = (id) => {
-  //   console.log("container id", id);
+  //   console.log('container id', id);
   //   history.push('/AddUpdateForm/' + id)
   // }
 
@@ -73,9 +67,9 @@ export class GiftsListContainer extends React.Component {
       filterValue: e.target.value
     })
     let newGiftCard = [];
-    if (selectedValue !== "All") {
+    if (selectedValue !== 'All') {
       this.props.giftCards.forEach(element => {
-        if (element.cardRetailer === selectedValue) {
+        if (element.cardRetailer === selectedValue && element.cardName.toLowerCase().startsWith(this.state.search)) {
           newGiftCard.push(element);
         }
       });
@@ -85,6 +79,28 @@ export class GiftsListContainer extends React.Component {
     this.props.fetchCardFilter(newGiftCard)
   };
 
+  onSearch = debounce(query =>{
+      this.setState({
+        search: query
+      });
+      let newGiftCard = [];
+      debugger
+      if(this.state.filterValue !== 'All'){
+        this.props.giftCards.filter(element => (element.cardRetailer === this.state.filterValue) && element.cardName.toLowerCase().startsWith(query))
+        .map(data => newGiftCard.push(data));
+      }
+      else{
+        this.props.giftCards.filter(element => element.cardName.toLowerCase().startsWith(query))
+        .map(data => newGiftCard.push(data));
+      }
+      this.props.fetchCardFilter(newGiftCard)
+   },500);
+
+  onChangeSearch = e =>{
+    let input = e.target.value.toLowerCase();
+    this.onSearch(input);
+  }
+
   onChangeSort = e => {
     const { sortOrder } = this.state;
     const giftCards = this.state.filterValue === 'All' ? this.props.giftCards : this.props.giftCardsFiltered;
@@ -93,19 +109,19 @@ export class GiftsListContainer extends React.Component {
       sortOrder: !this.state.sortOrder
     })
     let newGiftCard = giftCards;
-    if (e.target.value !== "None") {
+    if (e.target.value !== 'None') {
       switch (e.target.value) {
-        case "Points":
+        case 'Points':
           newGiftCard = sortOrder
             ? giftCards.sort(comparePointsAsc)
             : giftCards.sort(comparePointsDesc);
           break;
-        case "Count":
+        case 'Count':
           newGiftCard = sortOrder
             ? giftCards.sort(compareCountAsc)
             : giftCards.sort(compareCountDesc);
           break;
-        case "Validity":
+        case 'Validity':
           newGiftCard = sortOrder
             ? giftCards.sort(compareValidityAsc)
             : giftCards.sort(compareValidityDesc);
@@ -117,13 +133,13 @@ export class GiftsListContainer extends React.Component {
   };
 
   addUpdateForm = () => {
-    history.push("/AddUpdateForm");
+    history.push('/AddUpdateForm');
   };
 
   render() {
     if (this.props.giftCards.length === 0) {
       return (
-        <CircularProgress style={{ marginLeft: "50%", marginTop: "10%" }} />
+        <CircularProgress style={{ marginLeft: '50%', marginTop: '10%' }} />
       );
     }
     let cardRetailerArray = [];
@@ -134,7 +150,7 @@ export class GiftsListContainer extends React.Component {
     return (
       <React.Fragment>
         {/* <select onChange={this.onChangeRetailer}>
-          <option value="All">All</option>
+          <option value='All'>All</option>
           {
             uniqueCardRetailerArray.map((option) => {
               return(
@@ -145,39 +161,39 @@ export class GiftsListContainer extends React.Component {
         </select> */}
         <Grid container spacing={0}>
           <Grid item xs={12} sm={3}>
-            <label style={{ marginLeft: "2%" }}>Filter by Retailer:</label>
+            <label style={{ marginLeft: '2%' }}>Filter by Retailer:</label>
             <Select
               style={{
-                marginLeft: "2%",
-                marginTop: "2%",
-                width: "100px",
-                height: "35px"
+                marginLeft: '2%',
+                marginTop: '2%',
+                width: '100px',
+                height: '35px'
               }}
               native
               onChange={this.onChangeRetailer}
-              input={<OutlinedInput labelWidth={0} name="kpiValue" />}
+              input={<OutlinedInput labelWidth={0} name='kpiValue' />}
             >
-              <option value="All">All</option>
+              <option value='All'>All</option>
               {uniqueCardRetailerArray.map(option => {
                 return <option value={option}>{option}</option>;
               })}
             </Select>
           </Grid>
           <Grid item xs={12} sm={3}>
-            <label style={{ marginLeft: "2%" }}>Sort by:</label>
+            <label style={{ marginLeft: '2%' }}>Sort by:</label>
             <Select
               style={{
-                marginLeft: "2%",
-                marginTop: "2%",
-                marginRight: "2%",
-                width: "100px",
-                height: "35px"
+                marginLeft: '2%',
+                marginTop: '2%',
+                marginRight: '2%',
+                width: '100px',
+                height: '35px'
               }}
               native
               onChange={this.onChangeSort}
-              input={<OutlinedInput labelWidth={0} name="sortByValue" />}
+              input={<OutlinedInput labelWidth={0} name='sortByValue' />}
             >
-              <option value="None">None</option>
+              <option value='None'>None</option>
               {sortCategoryArray.map(option => {
                 return <option value={option}>{option}</option>;
               })}
@@ -185,9 +201,9 @@ export class GiftsListContainer extends React.Component {
             {this.state.sortOrder ? (
               <Tooltip
                 title={
-                  this.state.sortByValue === "Validity"
-                    ? "Oldest to Newest"
-                    : "Low to High"
+                  this.state.sortByValue === 'Validity'
+                    ? 'Oldest to Newest'
+                    : 'Low to High'
                 }
               >
                 <IconButton
@@ -199,9 +215,9 @@ export class GiftsListContainer extends React.Component {
             ) : (
                 <Tooltip
                   title={
-                    this.state.sortByValue === "Validity"
-                      ? "Newest to Oldest"
-                      : "High to Low"
+                    this.state.sortByValue === 'Validity'
+                      ? 'Newest to Oldest'
+                      : 'High to Low'
                   }
                 >
                   <IconButton onClick={this.handleSortButtonClick}>
@@ -213,9 +229,9 @@ export class GiftsListContainer extends React.Component {
           <Grid item xs={12} sm={3}>
             {adminEmail.includes(this.props.userDetails.email) ? (
               <Button
-                style={{ marginTop: "2%", marginRight: "3%", marginLeft: "2%" }}
-                variant="contained"
-                color="primary"
+                style={{ marginTop: '2%', marginRight: '3%', marginLeft: '2%' }}
+                variant='contained'
+                color='primary'
                 onClick={this.addUpdateForm}
               >
                 ADD CARD
@@ -223,7 +239,7 @@ export class GiftsListContainer extends React.Component {
             ) : null}
           </Grid>
           <Grid item xs={12} sm={3}>
-          <label style={{ marginTop: "2%" }}>Search:</label><input name="SearchBar" />
+          <label style={{ marginTop: '2%' }}>Search:</label><input name='SearchBar' onChange={this.onChangeSearch}/>
           </Grid>
         </Grid>
 

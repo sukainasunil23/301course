@@ -1,5 +1,5 @@
-import axiosWrapper from "../../../../apis/axiosCreate";
-import { SENT_CARDS, RECEIVED_CARDS, USER_DETAILS, REDEEM_CARD } from "./types";
+import axiosWrapper from '../../../../apis/axiosCreate';
+import { SENT_CARDS, RECEIVED_CARDS, USER_DETAILS, REDEEM_CARD } from './types';
 import {
   fetchReceivedCards,
   fetchSentCards,
@@ -7,49 +7,49 @@ import {
   redeemCard,
   updateUserBalance,
   updateTransact
-} from "./index.js";
+} from './index.js';
 
-describe("gift", () => {
-  it("fetchReceivedCards", async () => {
+describe('gift', () => {
+  it('fetchReceivedCards', async () => {
     axiosWrapper.get = jest
       .fn()
-      .mockImplementation(() => Promise.resolve({ data: { card: "test" } }));
-    const dispatch = jest.fn().mockImplementation(args => {});
-    const returnedFunction = fetchReceivedCards("test@gmail.com");
+      .mockImplementation(() => Promise.resolve({ data: { card: 'test' } }));
+    const dispatch = jest.fn().mockImplementation(() => {});
+    const returnedFunction = fetchReceivedCards('test@gmail.com');
     await returnedFunction(dispatch);
     expect(dispatch).toHaveBeenCalledWith({
       type: RECEIVED_CARDS,
-      payload: { card: "test" }
+      payload: { card: 'test' }
     });
   });
 
-  it("fetchSentCards", async () => {
+  it('fetchSentCards', async () => {
     axiosWrapper.get = jest
       .fn()
-      .mockImplementation(() => Promise.resolve({ data: { card: "test" } }));
-    const dispatch = jest.fn().mockImplementation(args => {});
-    const returnedFunction = fetchSentCards({ card: "test" });
+      .mockImplementation(() => Promise.resolve({ data: { card: 'test' } }));
+    const dispatch = jest.fn().mockImplementation(() => {});
+    const returnedFunction = fetchSentCards({ card: 'test' });
     await returnedFunction(dispatch);
     expect(dispatch).toHaveBeenCalledWith({
       type: SENT_CARDS,
-      payload: { card: "test" }
+      payload: { card: 'test' }
     });
   });
 
-  it("userDetails", async () => {
+  it('userDetails', async () => {
     axiosWrapper.get = jest
       .fn()
-      .mockImplementation(() => Promise.resolve({ data: { payload: "test" } }));
-    const dispatch = jest.fn().mockImplementation(args => {});
+      .mockImplementation(() => Promise.resolve({ data: { payload: 'test' } }));
+    const dispatch = jest.fn().mockImplementation(() => {});
     const returnedFunction = userDetails(1);
     await returnedFunction(dispatch);
     expect(dispatch).toHaveBeenCalledWith({
       type: USER_DETAILS,
-      payload: { payload: "test" }
+      payload: { payload: 'test' }
     });
   });
 
-//   it("redeemCard", async () => {
+//   it('redeemCard', async () => {
 //     axiosWrapper.delete = jest.fn().mockImplementation(() => Promise.resolve({ data: {id} }));
 //     const dispatch = jest.fn().mockImplementation(args => {});
 //     const returnedFunction = redeemCard(0, {});
@@ -60,14 +60,14 @@ describe("gift", () => {
 //     });
 //   });
 
-  it("updateUserBalance", async () => {
+  it('updateUserBalance', async () => {
     axiosWrapper.patch = jest
       .fn()
-      .mockImplementation(() => Promise.resolve({ test: "test" }));
+      .mockImplementation(() => Promise.resolve({ test: 'test' }));
     expect(await updateUserBalance(0, {})(() => 1)).toBe(undefined);
   });
 
-//   it("updateTransact", async () => {
+//   it('updateTransact', async () => {
 //     axiosWrapper.post = jest.fn().mockImplementation(() => Promise.resolve({ data: { id: 102 } }));
 //     //  const dispatch = jest.fn().mockImplementation(args => {});
 //     const returnedFunction = updateTransact({});

@@ -1,5 +1,3 @@
-import React from "react";
-import { shallow } from "../../../enzyme";
 import {DateFormatter} from "./DateFormatter"
 
 describe("DateFormatter is being checked", () => {

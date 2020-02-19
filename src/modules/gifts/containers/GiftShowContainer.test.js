@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 import { shallow } from '../../../enzyme';
 import { GiftShowContainer, mapStateToProps } from './GiftShowContainer';
-import CircularProgress from "@material-ui/core/CircularProgress";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 describe('GiftShowContainer test', () => {
@@ -10,21 +10,21 @@ describe('GiftShowContainer test', () => {
         props = {
             match:{
                 params:{
-                    id: "id"
+                    id: 'id'
                 }
             },
             gift:{
-                cardPoints : "cardPoints"
+                cardPoints : 'cardPoints'
             },
             user:{
-                balance_points: "balance_points"
+                balance_points: 'balance_points'
             },
             fetchCard : jest.fn(),
             userDetails : jest.fn(()=> Promise.resolve({})),
             updateUserBalance : jest.fn(()=> Promise.resolve({})),
             updateTransact: jest.fn(()=> Promise.resolve({})),
             updateCardCount : jest.fn(()=> Promise.resolve({})),
-            login:"login"
+            login:'login'
         };
     })
     it('should render the GiftShowContainer component', () => {
@@ -39,7 +39,7 @@ describe('GiftShowContainer test', () => {
         wrapper = shallow(<GiftShowContainer {...prop}/>);
         expect(wrapper.find(CircularProgress)).toHaveLength(1);
     })
-    it("should map state to props", () => {
+    it('should map state to props', () => {
         const initialState = {
           gifts: {
             giftCards: []

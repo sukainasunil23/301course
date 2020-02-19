@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import {
   userDetails,
   updateUserBalance,
   updateTransact
-} from "../../user/state/actions/index";
-import { fetchCard, updateCardCount } from "../state/actions";
-import GiftShow from "../components/GiftShow";
-import Snackbar from "../../common/components/Snackbar";
+} from '../../user/state/actions/index';
+import { fetchCard, updateCardCount } from '../state/actions';
+import GiftShow from '../components/GiftShow';
+import Snackbar from '../../common/components/Snackbar';
 import * as emailjs from 'emailjs-com';
 export class GiftShowContainer extends Component {
   state = {
@@ -16,7 +16,7 @@ export class GiftShowContainer extends Component {
     showSuccessSnackBar: false,
     balance_points: null,
     cardPoints: null,
-    email: ""
+    email: ''
   };
   componentDidMount() {
     // this.sendMail()
@@ -101,11 +101,11 @@ export class GiftShowContainer extends Component {
         from_name: name
     }
     // Your email service name if you just have one, you can use this one.
-    var service_id = "sendgrid";
+    var service_id = 'sendgrid';
     // Template you will use
-    var template_id = "template1";
+    var template_id = 'template1';
     // Send message using your client       
-    emailjs.send(service_id, template_id, payload, "user_PpATvNmFAn9KTbfZPyCC6")
+    emailjs.send(service_id, template_id, payload, 'user_PpATvNmFAn9KTbfZPyCC6')
         .then(function(response) {
             console.log('SUCCESS!', response.status, response.text);
         }, function(error) {
@@ -118,7 +118,7 @@ export class GiftShowContainer extends Component {
     const cardPoints = Number(this.state.cardPoints);
     if (Object.keys(this.props.gift).length === 0) {
       return (
-        <CircularProgress style={{ marginLeft: "50%", marginTop: "10%" }} />
+        <CircularProgress style={{ marginLeft: '50%', marginTop: '10%' }} />
       );
     }
     console.log(typeof(cardPoints - balance_points))
@@ -134,11 +134,11 @@ export class GiftShowContainer extends Component {
                 ? `Error! You need to log in first`
                 : points
             }
-            color="red"
+            color='red'
           />
         ) : null}
         {showSuccessSnackBar ? (
-          <Snackbar message={"Successfully sent to " + email} color="green" />
+          <Snackbar message={'Successfully sent to ' + email} color='green' />
         ) : null}
         <GiftShow
           data={this.props.gift}

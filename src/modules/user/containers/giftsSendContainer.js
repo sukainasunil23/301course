@@ -11,13 +11,13 @@ export class GiftsSendContainer extends Component {
     if(this.props.user)
     this.props.fetchSentCards(this.props.user.email);
   }
-  componentDidCatch(error, info) {
-    console.log(error)
+  componentDidCatch(error) {
+    console.log(error);
   }
   render() {
     if (this.props.isLoggedIn) {
       if(!(this.props.sentCards) || (this.props.sentCards.length < 0)) {
-        return <CircularProgress style={{marginLeft: '50%', marginTop: '10%'}} />
+        return <CircularProgress style={{marginLeft: '50%', marginTop: '10%'}} />;
       } else if (this.props.sentCards.length === 0) {
         return <h2 style={{
           height: '40px',
@@ -30,26 +30,26 @@ export class GiftsSendContainer extends Component {
           fontWeight: '500'
         }}>
         NO DATA
-        </h2>
+        </h2>;
         } else {
         return (
           <div>
             <GiftsSend data={this.props.sentCards} />
           </div>
-        )
+        );
       }    
     } else {
-        return <Redirect to="/" />
+        return <Redirect to='/' />;
     }
   }
 }
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
     return {
         user:state.login.detailsObject,
         isLoggedIn: state.login.loginStatus,
         sentCards: state.users.cards
-    }
-}
+    };
+};
 
 export default connect(mapStateToProps, {fetchSentCards})(GiftsSendContainer);

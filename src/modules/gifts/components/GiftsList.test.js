@@ -1,18 +1,18 @@
 
-import React from "react";
-import { shallow } from "../../../enzyme";
-import GiftsList from "./GiftsList";
+import React from 'react';
+import { shallow } from '../../../enzyme';
+import GiftsList from './GiftsList';
 
-describe("GiftsList", () => {
+describe('GiftsList', () => {
   let wrapper, props;
 
   props = {
     giftCardsFiltered: [],
     classes: {
-      root: "root"
+      root: 'root'
     }
   };
-  it("should render GiftsList", () => {
+  it('should render GiftsList', () => {
     wrapper = shallow(<GiftsList {...props} />);
     expect(wrapper).toBeTruthy();
   });

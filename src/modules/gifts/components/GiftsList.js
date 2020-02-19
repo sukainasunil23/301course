@@ -1,15 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import GiftCard from "../../common/components/GiftCard";
-import { List, AutoSizer } from "react-virtualized";
-import { Button} from '@material-ui/core';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import GiftCard from '../../common/components/GiftCard';
+import { List, AutoSizer } from 'react-virtualized';
 const styles = theme => ({
   root: {
     margin: '1%',
     padding: '1%',
-    float: "left",
+    float: 'left',
     width: '20%',
     [theme.breakpoints.down('xs')]: {
       padding: '7%',
@@ -20,7 +18,7 @@ const styles = theme => ({
     minWidth: 100
   },
   tableWrapper: {
-    overflow: "hidden"
+    overflow: 'hidden'
   },
   item: {
   }
@@ -34,7 +32,7 @@ class GiftsList extends React.Component {
     let {  giftCardsFiltered, userDetails, classes } = this.props;
   
     return (
-      // <div alignItems= "center">
+      // <div alignItems= 'center'>
       //   <List
       //   width={1000}
       //   height={600}
@@ -42,7 +40,7 @@ class GiftsList extends React.Component {
       //   rowRenderer={this.rowRenderer}
       //   rowCount={giftCardsFiltered.length} />
       // </div>
-      <div style={{ marginTop: "10px", height: "80vh" }}>
+      <div style={{ marginTop: '10px', height: '80vh' }}>
         <AutoSizer>
           {({ height, width }) => {
             const itemsPerRow =  Math.floor(width / 300) || 1; 
