@@ -1,20 +1,58 @@
 import React from "react";
 import { shallow } from "../../../enzyme";
-import DraggableDialog from './DraggableDialog'
+import { shallowToJson } from "enzyme-to-json";
+import { DraggableDialog, PaperComponent } from "./DraggableDialog";
 
-describe("<DraggableDialog/>", () => {
-   
-    let wrapper;
-  
-    it("should render", () => {
-        wrapper = shallow(<DraggableDialog />);
-      expect(wrapper).toBeTruthy();
-    });
-    it("simulate formic submit button click", () => {
-      
-        wrapper = shallow(<DraggableDialog />);
-        wrapper.find('Formik').simulate('click');
-    
-      });
-    
-  });
+let data = {
+  values: {
+    email: "email"
+  },
+  values2: {
+    email: "email"
+  },
+  values3: {
+    email: ""
+  },
+  errors: "",
+  touched: false,
+  handleChange: jest.fn(),
+  handleBlur: jest.fn(),
+  handleSubmit: jest.fn(),
+  isSubmitting: jest.fn()
+};
+let props = {
+  classes: {
+    root: "root"
+  },
+  getEmail: jest.fn()
+};
+it("should render DraggableDialog", () => {
+  let wrapper = shallow(<DraggableDialog {...props} />);
+  expect(wrapper).toBeTruthy();
+});
+
+it("should trigger handleOpenClose click event", () => {
+  let wrapper = shallow(<DraggableDialog {...props} />);
+  wrapper.find("#sendGift").simulate("click");
+});
+
+it("should render PaperComponent", () => {
+  let wrapper = shallow(<PaperComponent />);
+  expect(wrapper).toBeTruthy();
+});
+
+it("should trigger handleSendAndClose click event", () => {
+  let wrapper = shallow(<DraggableDialog {...props} values={data.values} />);
+  shallowToJson(wrapper).children[1].children[1].children[1].props.validate(
+    data.values
+  );
+  shallowToJson(wrapper).children[1].children[1].children[1].props.validate(
+    data.values2
+  );
+  shallowToJson(wrapper).children[1].children[1].children[1].props.validate(
+    data.values3
+  );
+  shallowToJson(wrapper).children[1].children[1].children[1].props.onSubmit(
+    data.values
+  );
+});

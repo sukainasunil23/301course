@@ -4,9 +4,9 @@ import {GiftCard, styles} from './GiftCard'
 
 describe("<GiftCard/>", () => {
   
-    let wrapper;
+    let wrapper, props;
     beforeEach(() => {
-        let props={
+        props={
             classes:{
                 card:'card',
                 avatar:'avatar',
@@ -20,6 +20,7 @@ describe("<GiftCard/>", () => {
                 cardShortDesc:'cardShortDesc'
             },
             userEmail:"test@gmail.com"
+            
         }
         wrapper = shallow(<GiftCard {...props}/>);
     });
@@ -32,6 +33,13 @@ describe("<GiftCard/>", () => {
         
         expect(styles({transitions:{duration:{shortest:9},create:jest.fn()}})).toBeTruthy();
       });
+    it('should update form if the user is admin',()=>{
+        const prop ={
+            ...props,
+            userEmail: "yoyogiftg2@gmail.com"
+        }
+        wrapper = shallow(<GiftCard {...prop}/>);
+    })
   
   });
   

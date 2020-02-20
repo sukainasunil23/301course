@@ -40,9 +40,7 @@ export class GiftsListContainer extends React.Component {
   componentDidMount() {
     this.props.fetchCards();
   }
-  componentDidCatch(error, info) {
-    console.log(error);
-  }
+  
   handleSortButtonClick = () => {
     const e = {
       target: {
@@ -255,7 +253,7 @@ export class GiftsListContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+export const mapStateToProps = state => {
   return {
     giftCards: state.gifts.giftCards,
     giftCardsFiltered: state.gifts.giftCardsFiltered,

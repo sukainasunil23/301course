@@ -30,7 +30,7 @@ export const userDetails = (id) => async (dispatch) => {
 export const redeemCard = (rowId, addObj) => async (dispatch) => {
     
     await axiosWrapper.delete(`/giftTransact/${rowId}`);
-    const endRes = await axiosWrapper.post('/giftTransac', addObj);
+    const endRes = await axiosWrapper.post('/giftTransact', addObj);
 
     dispatch({
         type: REDEEM_CARD,
@@ -40,14 +40,8 @@ export const redeemCard = (rowId, addObj) => async (dispatch) => {
 
 export const updateUserBalance = (id, newBalance) => async () => {
     await axiosWrapper.patch(`/users/${id}`, {balance_points: newBalance})
-    .catch((err) => {
-        console.log(err);
-    });
 };
 
 export const updateTransact = (TransactObj) => async () => {
     await axiosWrapper.post('/giftTransact', TransactObj )
-    .catch((err) => {
-        console.log(err);
-    });
 };

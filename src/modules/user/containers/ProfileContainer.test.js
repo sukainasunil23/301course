@@ -40,7 +40,6 @@ describe('ProfileContainers testing', () => {
           }
         };
         expect(mapStateToProps(initialState)).toEqual({
-          users: {},
           isLoggedIn: true,
           detailsObject: {}
         });

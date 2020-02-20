@@ -6,7 +6,9 @@ describe('GiftsSend component testing', () => {
   let wrapper, props;
 
   props = {
-    data: [],
+    data: [
+      {id: "1"}
+    ],
     classes: {
       root: 'root'
     }
@@ -14,5 +16,8 @@ describe('GiftsSend component testing', () => {
   it('should render GiftSend', () => {
     wrapper = shallow(<GiftsSend {...props} styles={styles} />);
     expect(wrapper).toBeTruthy();
+  });
+  it("styles", () => {
+    expect(styles({spacing:{unit:10}})).toBeTruthy();
   });
 });

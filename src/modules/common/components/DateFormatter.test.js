@@ -1,12 +1,15 @@
 import {DateFormatter} from "./DateFormatter"
 
 describe("DateFormatter is being checked", () => {
-    it("DateFormatter", () => {
-        var date = new Date("October 13, 2013 11:13:00")
-        expect(DateFormatter(date)).toBe('2013-10-13')
-      });
-      it("DateFormatter", () => {
-        var date = new Date("March 1, 2013 11:13:00")
-        expect(DateFormatter(date)).toBe('2013-03-01')
-      });
+  it("should return date", () => {
+    expect(DateFormatter("2/18/2020")).toEqual("2020-02-18");
+  });
+  
+  it("should return date", () => {
+    expect(DateFormatter("12/18/2020")).toEqual("2020-12-18");
+  });
+  
+  it("should return date", () => {
+    expect(DateFormatter("2/2/2020")).toEqual("2020-02-02");
+  });
 })

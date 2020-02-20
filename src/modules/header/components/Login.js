@@ -35,7 +35,7 @@ const styles = theme => ({
   }
 });
 
-function Login(props) {
+export function Login(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const {classes} = props;
@@ -50,12 +50,6 @@ function Login(props) {
       e.preventDefault()
       let data={email:email,password:password}
       login(data)
-      .then(res => {
-        if(res.length === 0){
-          console.log('true')
-          error = true;
-        }
-      })
     }
   return (
     <Grid
@@ -105,9 +99,9 @@ function Login(props) {
                   setPassword(e.target.value)
                 }}
               />
-              {error ? <Typography component='h1'> Invalid Email or Password</Typography>:''}
               <Button
                 type='submit'
+                id="submit"
                 fullWidth
                 variant='contained'
                 color='primary'

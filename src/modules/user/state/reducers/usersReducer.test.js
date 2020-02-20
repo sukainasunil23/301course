@@ -61,19 +61,18 @@ it('USER_DETAILS', () => {
 });
 
 /*Reedem card test case failed */
-// it('REDEEM_CARD', () => {
-//   const action = {
-//     type: 'REDEEM_CARD',
-//     payload: cards
-//   };
-
-//   const state = usersReducer(cards, action);
-
-//   expect(state).toEqual({
-//     ...state,
-//     cards
-//   });
-// });
+it('REDEEM_CARD', () => {
+  const action = {
+    type: 'REDEEM_CARD',
+    payload: {
+      id: "1"
+    }
+  };
+  const state = usersReducer({cards:[{id: "1"}]}, action);
+  expect(state).toEqual({"card": [{"id": "1", "isRedeemed": true}], "cards": [{"id": "1"}]});
+  const card = usersReducer({cards:[{id: "2"}]}, action);
+  expect(card).toEqual({"card": [{"id": "2"}], "cards": [{"id": "2"}]});
+});
 
 it('UPDATE_BALANCE', () => {
   const action = {

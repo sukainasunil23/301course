@@ -8,7 +8,7 @@ import history from './common/components/history';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { LocalizeProvider } from 'react-localize-redux';
 
-function Loading({ error }) {
+export function Loading({ error }) {
   if (error) {
     return(<h2 style={{
       height:'40px',
@@ -27,27 +27,27 @@ function Loading({ error }) {
   }
 }
 
-const GiftsListContainer = Loadable({
+export const GiftsListContainer = Loadable({
   loader: () => import('./gifts/containers/GiftsListContainer'),
   loading: Loading
 });
 
-const ProfileContainers = Loadable({
+export const ProfileContainers = Loadable({
   loader: () => import('./user/containers/ProfileContainer'),
   loading: Loading
 });
 
-const GiftShowContainer = Loadable({
+export const GiftShowContainer = Loadable({
   loader: () => import('./gifts/containers/GiftShowContainer'),
   loading: Loading
 });
 
-const GiftsSendContainer = Loadable({
+export const GiftsSendContainer = Loadable({
   loader: () => import('./user/containers/GiftsSendContainer'),
   loading: Loading
 });
 
-const GiftsReceivedContainer = Loadable({
+export const GiftsReceivedContainer = Loadable({
   loader: () => import('./user/containers/GiftsReceivedContainer'),
   loading: Loading
 });
@@ -57,17 +57,17 @@ const GiftsReceivedContainer = Loadable({
 //   loading: Loading
 // });
 
-const AddUpdateForm = Loadable({
+export const AddUpdateForm = Loadable({
   loader: () => import('./admin/components/AddUpdateForm'),
   loading: Loading
 });
 
-const ErrorPage = Loadable({
+export const ErrorPage = Loadable({
   loader: () => import('./common/components/ErrorPage'),
   loading: Loading
 });
 
-const Login = Loadable({
+export const Login = Loadable({
   loader: () => import('./header/components/Login'),
   loading: Loading
 });

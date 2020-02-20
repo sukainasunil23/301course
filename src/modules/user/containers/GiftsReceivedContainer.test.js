@@ -13,7 +13,7 @@ describe('GiftsReceivedContainer testing', () => {
       isLoggedIn: true,
       receivedCards: [],
       fetchReceivedCards: jest.fn(),
-      redeemCard: jest.fn('test','test')
+      redeemCard: jest.fn()
     };
     it('should render GiftsReceivedContainer', () => {
       wrapper = shallow(<GiftsReceivedContainer {...props} />);
@@ -54,5 +54,12 @@ describe('GiftsReceivedContainer testing', () => {
         }
       };
       expect(mapStateToProps(initialState).loginStatus).toBe(undefined);
+    });
+    it('redeem card', () => {
+      const row ={
+        id: "id"
+      }
+      wrapper = shallow(<GiftsReceivedContainer {...props} />);
+      wrapper.instance().handleRedeemCard(row)
     });
   });

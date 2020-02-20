@@ -61,14 +61,17 @@ describe('giftsReducer', () => {
   it('ADMIN_UPDATE_CARD', () => {
     const action = {
       type: 'ADMIN_UPDATE_CARD',
-      payload: { giftCards: { card } }
+      payload: { data: {id: "1" } }
     };
 
-    const state = giftsReducer(card, action);
-
+    const state = giftsReducer({giftCards: [{id: "1"}]}, action);
     expect(state).toEqual({
       ...state,
       card
+    });
+    const cards = giftsReducer({giftCards: [{id: "2"}]}, action);
+    expect(cards).toEqual({
+      giftCards: [{id: "2"}] 
     });
   });
 

@@ -11,9 +11,6 @@ export class GiftsSendContainer extends Component {
     if(this.props.user)
     this.props.fetchSentCards(this.props.user.email);
   }
-  componentDidCatch(error) {
-    console.log(error);
-  }
   render() {
     if (this.props.isLoggedIn) {
       if(!(this.props.sentCards) || (this.props.sentCards.length < 0)) {

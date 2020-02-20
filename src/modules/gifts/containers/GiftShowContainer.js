@@ -9,7 +9,7 @@ import {
 import { fetchCard, updateCardCount } from '../state/actions';
 import GiftShow from '../components/GiftShow';
 import Snackbar from '../../common/components/Snackbar';
-import * as emailjs from 'emailjs-com';
+
 export class GiftShowContainer extends Component {
   state = {
     showErrorSnackBar: false,
@@ -37,9 +37,7 @@ export class GiftShowContainer extends Component {
         });
     }
   }
-  componentDidCatch(error, info) {
-    console.log(error)
-  }
+  
   validateSend = async sendTo => {
     if (
       this.state.cardPoints &&
@@ -95,23 +93,23 @@ export class GiftShowContainer extends Component {
     }
   };
 
-  sendMail = (email, name) => {
-    let payload = {
-        to_email: email,
-        from_name: name
-    }
-    // Your email service name if you just have one, you can use this one.
-    var service_id = 'sendgrid';
-    // Template you will use
-    var template_id = 'template1';
-    // Send message using your client       
-    emailjs.send(service_id, template_id, payload, 'user_PpATvNmFAn9KTbfZPyCC6')
-        .then(function(response) {
-            console.log('SUCCESS!', response.status, response.text);
-        }, function(error) {
-            console.log('FAILED...', error);
-    });
-};
+//   sendMail = (email, name) => {
+//     let payload = {
+//         to_email: email,
+//         from_name: name
+//     }
+//     // Your email service name if you just have one, you can use this one.
+//     var service_id = 'sendgrid';
+//     // Template you will use
+//     var template_id = 'template1';
+//     // Send message using your client       
+//     emailjs.send(service_id, template_id, payload, 'user_PpATvNmFAn9KTbfZPyCC6')
+//         .then(function(response) {
+//             console.log('SUCCESS!', response.status, response.text);
+//         }, function(error) {
+//             console.log('FAILED...', error);
+//     });
+// };
   render() {
     const { showErrorSnackBar, showSuccessSnackBar, email } = this.state;
     const balance_points = Number(this.state.balance_points);

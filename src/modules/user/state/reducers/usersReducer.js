@@ -19,10 +19,8 @@ const usersReducer = (state = INITIAL_STATE, action) => {
             break;
 
         case REDEEM_CARD:
-            // eslint-disable-next-line no-case-declarations
-            const id = action.payload.id;
-            state.cards = state.cards.map(card => {
-                if (card.id === id) {
+            state.card = state.cards.map(card => {
+                if (card.id === action.payload.id) {
                     const tempObj = {...card, isRedeemed: true};
                     return tempObj;
                 } else {

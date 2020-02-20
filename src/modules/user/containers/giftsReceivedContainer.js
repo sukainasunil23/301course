@@ -11,9 +11,6 @@ export class GiftsReceivedContainer extends Component {
       if(this.props.user)
         this.props.fetchReceivedCards(this.props.user.email);
   }
-  componentDidCatch(error) {
-    console.log(error);
-  }
   handleRedeemCard = (row) => {
     const rowId = row.id;
     const addObj = {

@@ -39,6 +39,40 @@ describe('GiftShowContainer test', () => {
         wrapper = shallow(<GiftShowContainer {...prop}/>);
         expect(wrapper.find(CircularProgress)).toHaveLength(1);
     })
+    it('should call validateSend function', ()=>{
+        const prop ={
+            ...props,
+            gift:{
+                cardPoints : 500
+            },
+            user:{
+                balance_points: 800
+            },
+        }
+        wrapper = shallow(<GiftShowContainer {...prop}/>);
+        wrapper.instance().setState({
+            cardPoints: 500,
+            balance_points: 800
+        })
+        expect(wrapper.instance().validateSend()).toBeTruthy();
+    })
+    it('show errorSnackBar', ()=>{
+        const prop ={
+            ...props,
+            gift:{
+                cardPoints : 800
+            },
+            user:{
+                balance_points: 500
+            },
+        }
+        wrapper = shallow(<GiftShowContainer {...prop}/>);
+        wrapper.instance().setState({
+            cardPoints: 800,
+            balance_points: 500
+        })
+        expect(wrapper.instance().validateSend()).toBeTruthy();
+    })
     it('should map state to props', () => {
         const initialState = {
           gifts: {
