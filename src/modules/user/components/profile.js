@@ -1,16 +1,38 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Styles from '../../../assets/css/Profile.module.css';
-import Paper from '@material-ui/core/Paper';
-
-const Profile = (props) => {
+// import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField';
+export class Profile extends React.Component  {
+  constructor(props){
+    super(props)
+    this.state={
+      editable:false,
+      name:this.props.detailsObject.first_name+' '+this.props.detailsObject.last_name,
+      email:this.props.detailsObject.email
+    }
+  }
+  onclick=(e)=>{
+    console.log("clicked")
+    e.preventDefault()
+   this.setState({
+    editable:!this.state.editable
+   })
+  }
+  
+onChange=(e)=>{
+this.setState({
+ [ e.target.name]:e.target.value
+})
+}
+  render(){
     let {
-      email,
-      first_name,
-      last_name,
       image,
       balance_points
-    } = props.detailsObject;
+    } = this.props.detailsObject;
+
+   
     return (
       <React.Fragment>
         <div className={Styles.profileHeader}>
@@ -27,15 +49,19 @@ const Profile = (props) => {
               <label className={Styles.label}>User Id</label>
               <label className={Styles.label}>Balance Points</label>
             </Grid>
-            <Grid item xs={8}>
-              <Paper className={Styles.profileValues}>{first_name} {last_name}</Paper>
-              <Paper className={Styles.profileValues}>{email}</Paper>
-              <Paper className={Styles.profileValues}>{balance_points} Points</Paper>
+            <Grid item xs={4}>
+              <TextField name="name" id="name" disabled={!this.state.editable} onChange={(e)=>this.onChange(e)} className={Styles.profileValues} value={this.state.name}></TextField>
+              <TextField name="email" id="email" disabled={!this.state.editable} onChange={(e)=>this.onChange(e)} className={Styles.profileValues} value={this.state.email}></TextField>
+              <TextField disabled="false" className={Styles.profileValues} value={balance_points}>{balance_points} Points</TextField>
             </Grid>
           </Grid>
+
         </div>
+        {
+          !this.state.editable?<Button id="edit" onClick={(e)=>{this.onclick(e)}}>EDIT</Button>:<Button onClick={(e)=>{this.onclick(e)}}> SAVE</Button>
+        }
       </React.Fragment>
     );
-  }
+  }}
 
 export default Profile;

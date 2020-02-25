@@ -9,7 +9,6 @@ import {
 } from './index.js';
 import {
   FETCH_CARDS,
-  FETCH_CARD,
   FETCH_CARD_FILTER,
   ADMIN_ADD_CARD,
   UPDATE_CARD_COUNT,

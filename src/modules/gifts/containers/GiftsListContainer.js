@@ -228,6 +228,7 @@ export class GiftsListContainer extends React.Component {
             {adminEmail.includes(this.props.userDetails.email) ? (
               <Button
                 style={{ marginTop: '2%', marginRight: '3%', marginLeft: '2%' }}
+                id="addCard"
                 variant='contained'
                 color='primary'
                 onClick={this.addUpdateForm}

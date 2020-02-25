@@ -1,6 +1,7 @@
 import React from "react";
 import { shallow } from "../../../enzyme";
 import { GiftsList } from "./GiftsList";
+import { List} from 'react-virtualized';
 
 describe("GiftsList", () => {
   let wrapper, props;

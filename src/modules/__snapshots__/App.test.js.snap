@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render App 1`] = `
+<LocalizeProvider>
+  <Connect(WithStyles(Header)) />
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Switch>
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/login"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/giftCards/:id"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/giftCards"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/Profile"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/GiftsSend"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/GiftsReceived"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/AddUpdateForm"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/AddUpdateForm/:id"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/404"
+      />
+      <Redirect
+        push={false}
+        to="/404"
+      />
+    </Switch>
+  </Router>
+  <WithStyles(Footer) />
+</LocalizeProvider>
+`;
+
+exports[`should render Loading 1`] = `
+<h2
+  style={
+    Object {
+      "background": "#b3d9f7",
+      "color": "white",
+      "fontSize": "20px",
+      "fontWeight": "500",
+      "height": "40px",
+      "paddingTop": "5px",
+      "textAlign": "center",
+      "verticalAlign": "middle",
+    }
+  }
+>
+  Oh nooess! Something went wrong. Try re-loading!
+</h2>
+`;
+
+exports[`should render Loading 2`] = `
+<WithStyles(LinearProgress)
+  color="secondary"
+/>
+`;
+
+exports[`should render correctly AddUpdateForm 1`] = `ShallowWrapper {}`;
+
+exports[`should render correctly ErrorPage 1`] = `ShallowWrapper {}`;
+
+exports[`should render correctly GiftShowContainer 1`] = `ShallowWrapper {}`;
+
+exports[`should render correctly GiftsListContainer 1`] = `ShallowWrapper {}`;
+
+exports[`should render correctly GiftsReceivedContainer 1`] = `ShallowWrapper {}`;
+
+exports[`should render correctly GiftsSendContainer 1`] = `ShallowWrapper {}`;
+
+exports[`should render correctly Login 1`] = `ShallowWrapper {}`;
+
+exports[`should render correctly ProfileContainers 1`] = `ShallowWrapper {}`;
