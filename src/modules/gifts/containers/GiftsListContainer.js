@@ -67,10 +67,9 @@ export class GiftsListContainer extends React.Component {
     let newGiftCard = [];
     if (selectedValue !== 'All') {
       this.props.giftCards.forEach(element => {
-        if (element.cardRetailer === selectedValue && element.cardName.toLowerCase().startsWith(this.state.search)) {
+        element.cardRetailer === selectedValue && element.cardName.toLowerCase().startsWith(this.state.search) &&
           newGiftCard.push(element);
-        }
-      });
+       });
     } else {
       newGiftCard = this.props.giftCards;
     }
@@ -82,7 +81,6 @@ export class GiftsListContainer extends React.Component {
         search: query
       });
       let newGiftCard = [];
-      debugger
       if(this.state.filterValue !== 'All'){
         this.props.giftCards.filter(element => (element.cardRetailer === this.state.filterValue) && element.cardName.toLowerCase().startsWith(query))
         .map(data => newGiftCard.push(data));
