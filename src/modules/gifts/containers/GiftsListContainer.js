@@ -90,7 +90,7 @@ export class GiftsListContainer extends React.Component {
         .map(data => newGiftCard.push(data));
       }
       this.props.fetchCardFilter(newGiftCard)
-   },500);
+   },0);
 
   onChangeSearch = e =>{
     let input = e.target.value.toLowerCase();

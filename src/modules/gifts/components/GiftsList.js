@@ -18,9 +18,31 @@ export const styles = theme => ({
 
 export class GiftsList extends React.Component {
   state = {
-    giftCardsFiltered: this.props.giftCardsFiltered,
+    giftCardsFiltered: this.props.giftCardsFiltered
   };  
-  
+  renderItems = ({ index, key, style, parent }) => {
+    const items = [];
+    const itemsPerRow = parent.props.itemsPerRow;
+    const fromIndex = index * itemsPerRow;
+    const toIndex = Math.min(
+      fromIndex + itemsPerRow,
+      this.props.giftCardsFiltered.length
+    );
+
+    for (let i = fromIndex; i < toIndex; i++) {
+      items.push(
+        <div className={this.props.classes.root} key={i}>
+          <GiftCard giftCard={this.props.giftCardsFiltered[i]} userEmail={this.props.userDetails.email}/>
+        </div>
+      );
+    }
+
+    return (
+      <div key={key} style={style}>
+        {items}
+      </div>
+    );
+  }
   autoSizer = ({ height, width }) => {
     const itemsPerRow =  Math.floor(width / 300) || 1; 
     const rowCount = Math.ceil(this.props.giftCardsFiltered.length / itemsPerRow); 
@@ -31,28 +53,8 @@ export class GiftsList extends React.Component {
           height={height}
           rowCount={rowCount}
           rowHeight={340}
-          rowRenderer={({ index, key, style }) => {
-            const items = [];
-            const fromIndex = index * itemsPerRow;
-            const toIndex = Math.min(
-              fromIndex + itemsPerRow,
-              this.props.giftCardsFiltered.length
-            );
-
-            for (let i = fromIndex; i < toIndex; i++) {
-              items.push(
-                <div className={this.props.classes.root} key={i}>
-                  <GiftCard giftCard={this.props.giftCardsFiltered[i]} userEmail={this.props.userDetails.email}/>
-                </div>
-              );
-            }
-
-            return (
-              <div key={key} style={style}>
-                {items}
-              </div>
-            );
-          }}
+          rowRenderer={this.renderItems}
+          itemsPerRow={itemsPerRow}
         />
       </div>
     );

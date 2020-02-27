@@ -30,11 +30,6 @@ export class GiftShowContainer extends Component {
             cardPoints: this.props.gift.cardPoints
           });
         })
-        .catch(err => {
-          // Handles any error that occurred in any of the previous
-          // promises in the chain.
-          console.log(err);
-        });
     }
   }
   

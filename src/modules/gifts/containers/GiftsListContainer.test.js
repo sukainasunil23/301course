@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "../../../enzyme";
 import { shallowToJson } from "enzyme-to-json";
 import { GiftsListContainer, mapStateToProps } from "./GiftsListContainer";
-import * as _ from 'lodash';
+import * as lodash from 'lodash';
 
 jest.useFakeTimers();
 
@@ -11,7 +11,8 @@ let props = {
     root: "root"
   },
   giftCards: [],
-  fetchCards: jest.fn()
+  fetchCards: jest.fn(),
+  fetchCardFilter: jest.fn()
 };
 it("should render GiftsListContainer", () => {
   let wrapper = shallow(<GiftsListContainer {...props} />);

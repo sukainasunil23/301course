@@ -35,7 +35,6 @@ export const login = object => async dispatch => {
       type: LOGIN,
       payload: userData
     });
-    log.info(`user [${profileObj.email}] is logged in at [${new Date()}]`);
     window.localStorage.setItem("user",JSON.stringify(userData))
     history.push('/')
   }
@@ -58,11 +57,9 @@ export const login = object => async dispatch => {
      
     }catch{
 
-      log.error("Server error");
+      console.log("Server error");
     }
     
-  }else{
-    log.error("User not found");
   }
   
 

@@ -43,16 +43,18 @@ this.setState({
           />
         </div>
         <div className={Styles.profileContent}>
-          <Grid container spacing={0}>
+          <Grid container>
             <Grid item xs={4}>
               <label className={Styles.label}>Name</label>
-              <label className={Styles.label}>User Id</label>
-              <label className={Styles.label}>Balance Points</label>
+              <TextField name="name" id="name" disabled={!this.state.editable} onChange={(e)=>this.onChange(e)} className={Styles.label} value={this.state.name}></TextField>
             </Grid>
             <Grid item xs={4}>
-              <TextField name="name" id="name" disabled={!this.state.editable} onChange={(e)=>this.onChange(e)} className={Styles.profileValues} value={this.state.name}></TextField>
-              <TextField name="email" id="email" disabled={!this.state.editable} onChange={(e)=>this.onChange(e)} className={Styles.profileValues} value={this.state.email}></TextField>
-              <TextField disabled="false" className={Styles.profileValues} value={balance_points}>{balance_points} Points</TextField>
+              <label className={Styles.label}>User Id</label>
+              <TextField name="email" id="email" disabled={!this.state.editable} onChange={(e)=>this.onChange(e)} className={Styles.label} value={this.state.email}></TextField>
+            </Grid>
+            <Grid item xs={4}>
+              <label className={Styles.label}>Balance Points</label>
+              <TextField disabled="false" className={Styles.label} value={balance_points? balance_points: "0"}>0 Points</TextField>
             </Grid>
           </Grid>
 

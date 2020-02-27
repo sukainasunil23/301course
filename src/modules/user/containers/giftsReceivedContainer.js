@@ -29,7 +29,8 @@ export class GiftsReceivedContainer extends Component {
   }
 
   render() {
-    if (this.props.isLoggedIn) {
+    if (!this.props.isLoggedIn) 
+      return <Redirect to='/' />;
       if(!(this.props.receivedCards) || (this.props.receivedCards.length < 0)) {
         return <CircularProgress style={{marginLeft: '50%', marginTop: '10%'}} />;            
       } else if (this.props.receivedCards.length === 0) {
@@ -52,10 +53,7 @@ export class GiftsReceivedContainer extends Component {
         </div>
       );
     } 
-  } else {
-      return <Redirect to='/' />;
   }   
-  }
 }
 
 export const mapStateToProps = (state) => {

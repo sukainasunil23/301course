@@ -12,11 +12,12 @@ export class GiftsSendContainer extends Component {
     this.props.fetchSentCards(this.props.user.email);
   }
   render() {
-    if (this.props.isLoggedIn) {
-      if(!(this.props.sentCards) || (this.props.sentCards.length < 0)) {
-        return <CircularProgress style={{marginLeft: '50%', marginTop: '10%'}} />;
-      } else if (this.props.sentCards.length === 0) {
-        return <h2 style={{
+    if (!this.props.isLoggedIn) 
+      return <Redirect to='/' />;
+    if(!(this.props.sentCards) || (this.props.sentCards.length < 0)) {
+      return <CircularProgress style={{marginLeft: '50%', marginTop: '10%'}} />;
+    } else if (this.props.sentCards.length === 0) {
+      return <h2 style={{
           height: '40px',
           background: '#b3d9f7',
           color: 'white',
@@ -35,11 +36,8 @@ export class GiftsSendContainer extends Component {
           </div>
         );
       }    
-    } else {
-        return <Redirect to='/' />;
-    }
+    } 
   }
-}
 
 export const mapStateToProps = (state) => {
     return {
