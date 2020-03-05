@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -125,5 +126,7 @@ export function Login(props) {
     </Grid>
   );
 }
-
+Login.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 export default (connect(null,{login}))(withStyles(styles)(Login))

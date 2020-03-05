@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {
@@ -145,6 +146,13 @@ export class GiftShowContainer extends Component {
       </div>
     );
   }
+}
+
+GiftShowContainer.propType = {
+  isLoggedIn: PropTypes.bool,
+  gift: PropTypes.object,
+  login: PropTypes.object,
+  user: PropTypes.object
 }
 
 export const mapStateToProps = (state, ownProps) => {
