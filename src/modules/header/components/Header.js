@@ -34,6 +34,7 @@ export class Header extends Component {
     }
   }
   render() {
+    console.log(this.props.isLoggedIn)
     const { showErrorSnack } = this.state
     const { classes } = this.props;
     return (
@@ -69,12 +70,24 @@ export class Header extends Component {
                 MY PROFILE
               </Button>
             ) : null}
-            <Button id='logging' className={Styles.headerButton}
+            {this.props.isLoggedIn?
+              <Button id='logout' className={Styles.headerButton}
               color='inherit'
-              onClick={this.props.isLoggedIn? this.logOut: this.logIn}
+              onClick={()=>{this.props.logout(this.props.userDetails);
+                history.push('/');
+                window.sessionStorage.removeItem('user');
+                window.sessionStorage.removeItem('usertype');}}
             >
-              {this.props.isLoggedIn ? 'LOGOUT' : 'LOGIN'}
+              LOGOUT
             </Button>
+            :
+            <Button id='login' className={Styles.headerButton}
+              color='inherit'
+              onClick={()=>history.push('/login')}
+            >
+              LOGIN
+            </Button>}
+            
           </Toolbar>
         </AppBar>
       </div>
@@ -96,12 +109,6 @@ export class Header extends Component {
     history.push('/GiftsReceived');
   };
 
-  logOut = () => {
-    this.props.logout();
-    history.push('/');
-    window.sessionStorage.removeItem('user');
-    window.sessionStorage.removeItem('usertype');
-  };
 
   logIn = () => {
     history.push('/login')
@@ -109,7 +116,9 @@ export class Header extends Component {
 }
 
 Header.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  isLoggedIn: PropTypes.bool,
+  userDetails: PropTypes.object
 };
 
 export const mapStateToProps = state => {

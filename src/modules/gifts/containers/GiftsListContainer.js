@@ -14,7 +14,6 @@ import DescendingButton from '@material-ui/icons/SwapVerticalCircle';
 import Tooltip from '@material-ui/core/Tooltip';
 import { adminEmail } from '../../../config/constants';
 import Grid from '@material-ui/core/Grid';
-import {debounce} from 'lodash';
 
 import {
   comparePointsAsc,
@@ -76,7 +75,7 @@ export class GiftsListContainer extends React.Component {
     this.props.fetchCardFilter(newGiftCard)
   };
 
-  onSearch = debounce(query =>{
+  onSearch = query =>{
       this.setState({
         search: query
       });
@@ -90,7 +89,7 @@ export class GiftsListContainer extends React.Component {
         .map(data => newGiftCard.push(data));
       }
       this.props.fetchCardFilter(newGiftCard)
-   },0);
+   };
 
   onChangeSearch = e =>{
     let input = e.target.value.toLowerCase();
@@ -261,7 +260,10 @@ export const mapStateToProps = state => {
 };
 
 GiftsListContainer.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  giftCards: PropTypes.array,
+  giftCardsFiltered: PropTypes.array,
+  userDetails: PropTypes.object,
 };
 
 export default connect(
